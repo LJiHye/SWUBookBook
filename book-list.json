@@ -1,0 +1,91 @@
+[
+  {
+    "ISBN": 9791196797706,
+    "name": "이기적 유전자",
+    "type": "과학",
+    "picture": "public/images/book1.jpg",
+    "price": 1.23,
+    "sellerId": "yoonch128"
+  },
+  {
+    "ISBN": 9788959896127,
+    "name": "트렌드 코리아 2020",
+    "type": "경제/경영",
+    "picture": "public/images/book2.jpg",
+    "area": "115/76",
+    "price": 1.56,
+    "sellerId": "yoonch129"
+  },
+  {
+    "ISBN": 9791196797706,
+    "name": "지쳤거나 좋아하는게 없거나",
+    "type": "에세이",
+    "picture": "public/images/book3.jpg",
+    "area": "204/72",
+    "price": 2.74,
+    "sellerId": "yoonch127"
+  },
+  {
+    "ISBN": 9788934985068,
+    "name": "팩트풀니스",
+    "type": "인문",
+    "picture": "public/images/book4.jpg",
+    "area": "693/82",
+    "price": 1.87,
+    "sellerId": "yoonch126"
+  },
+  {
+    "ISBN": 9791188388905,
+    "name": "에이트",
+    "type": "자기계발",
+    "picture": "public/images/book5.jpg",
+    "area": "46/45",
+    "price": 1.97,
+    "sellerId": "yoonch125"
+  },
+  {
+    "ISBN": 9788984373853,
+    "name": "작가들의 비밀스러운 삶",
+    "type": "외국소설",
+    "picture": "public/images/book6.jpg",
+    "area": "113A/84",
+    "price": 1.77,
+    "sellerId": "yoonch124"
+  },
+  {
+    "ISBN": 9791159036514,
+    "name": "데미안",
+    "type": "외국소설",
+    "picture": "public/images/book7.jpg",
+    "area": "145/114",
+    "price": 2.12,
+    "sellerId": "yoonch123"
+  },
+  {
+    "ISBN": 9788954655972,
+    "name": "여행의 이유",
+    "type": "산문",
+    "picture": "public/images/book8.jpg",
+    "area": "430/92",
+    "price": 2.57,
+    "sellerId": "yoonch122"
+  },
+  {
+    "ISBN": 9791187297239,
+    "name": "지금 이대로 좋다",
+    "type": "에세이",
+    "picture": "public/images/book9.jpg",
+    "area": "111B/84",
+    "price": 1.32,
+    "sellerId": "yoonch121"
+  },
+  {
+    "ISBN": 9791187119845,
+    "name": "나는 나로 살기로 했다",
+    "type": "에세이",
+    "picture": "public/images/book10.jpg",
+    "area": "75/61",
+    "price": 1.11,
+    "sellerId": "yoonch120"
+  }
+]
