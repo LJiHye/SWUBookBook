@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <!--
 	Greatness by FreeHTML5.co
 	Twitter: http://twitter.com/fh5co
@@ -48,7 +48,8 @@
 	<script src="../public/javascripts/modernizr-2.6.2.min.js"></script>
 
 
-	<script src="//developers.kakao.com/sdk/../public/javascripts/kakao.min.js"></script>
+	<!--<script src="//developers.kakao.com/sdk/../public/javascripts/kakao.min.js"></script>-->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 	<script type="text/javascript">
 		//document.getElementById('search').addEventListener('searchISBN', onClick);
@@ -57,7 +58,7 @@
 				if(isbn !== undefined && isbn !== ""){
 						$.ajax({
 							url: "https://dapi.kakao.com/v3/search/book",
-							headers: {'Authorization': 'KakaoAK '+ '여기 key 넣어야 됨'},
+							headers: {'Authorization': 'KakaoAK ' + '여기에 API Key 입력!!!!'},
 							type : "get",
 							data:{
 									query: isbn,
@@ -66,14 +67,14 @@
 							success : function(result){
 									let data = result.documents[0];
 									console.log(result);
-									// $("#title").val(data.title);
-									// $('#author').val(data.authors);
-									// $('#pub').val(data.publisher);
-									// $('#price').val(data.price);
-									// $('#content').val(data.contents+"...");
-									// let date = data.datetime.split('T')[0];
-									// $('#date').val(date);
-									// $('#translator').val(data.translators);
+									$("#title").val(data.title);
+									$('#author').val(data.authors);
+									$('#pub').val(data.publisher);
+									$('#price').val(data.price);
+									$('#content').val(data.contents+"...");
+									let date = data.datetime.split('T')[0];
+									$('#date').val(date);
+									$('#translator').val(data.translators);
 									console.log(data + " is found...");
 								}
 					});
