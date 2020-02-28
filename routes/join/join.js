@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
 })
 connection.connect()
 
-router.get('/', function(req,res) {
+router.get('/join', function(req,res) {
 	var msg;
 	var errMsg = req.flash('error')
 	if(errMsg) msg = errMsg;
@@ -58,7 +58,7 @@ passport.use('local-join', new LocalStrategy({
 	}
 ));
 
-router.post('/', passport.authenticate('local-join', {
+router.post('/join', passport.authenticate('local-join', {
 				successRedirect: '/main',
 				failureRedirect: '/join',
 				failureFlash: true })
