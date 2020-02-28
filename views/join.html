@@ -1,4 +1,4 @@
- <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <!--
 	Greatness by FreeHTML5.co
 	Twitter: http://twitter.com/fh5co
@@ -8,7 +8,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BookBook &mdash; 블록체인 기반 대학생 중고책 거래 플랫폼</title>
+	<title>BookBook-Join</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -58,30 +58,27 @@
 				if(isbn !== undefined && isbn !== ""){
 						$.ajax({
 							url: "https://dapi.kakao.com/v3/search/book",
-							headers: {'Authorization': 'KakaoAK ' + '여기에 API KEY 입력!'},
+							headers: {'Authorization': 'KakaoAK ' + '여기에 API Key 입력!!!!'},
 							type : "get",
 							data:{
 									query: isbn,
 								 target:'isbn'
 							},
 							success : function(result){
-								let data = result.documents[0];
-								console.log(result);
-								if(result.documents[0] == undefined) {
-									alert("isbn 정보를 찾을 수 없습니다.");
-									return;
+									let data = result.documents[0];
+									console.log(result);
+									$("#title").val(data.title);
+									$('#author').val(data.authors);
+									$('#pub').val(data.publisher);
+									$('#price').val(data.price);
+									$('#content').val(data.contents+"...");
+									let date = data.datetime.split('T')[0];
+									$('#date').val(date);
+									$('#translator').val(data.translators);
+									console.log(data + " is found...");
 								}
-								$("#title").val(data.title);
-								$('#author').val(data.authors);
-								$('#pub').val(data.publisher);
-								$('#price').val(data.price);
-								$('#content').val(data.contents+"...");
-								let date = data.datetime.split('T')[0];
-								$('#date').val(date);
-								$('#translator').val(data.translators);
-							}
 					});
-				} else alert("isbn을 입력해 주세요.");
+				} else console.log("isbn not found...");
 		}
 	</script>
 	<!-- FOR IE9 below -->
@@ -111,8 +108,8 @@
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
-						<li class="active"><a href="/">Home</a></li>
-						<li><a href="join">회원가입</a></li>
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="join">회원가입</a></li>
 						<li><a href="login">로그인</a></li>
 						<li><a href="/buy">구매</a></li>
 						<li class="has-dropdown">
@@ -134,10 +131,10 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>Sell Book</h1>
+							<h1>Join! Our Website!</h1>
 						</div>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</header>
@@ -149,65 +146,19 @@
 					<caption> <br> <br> </caption>
 			</thead>
 			<tbody>
-					<form action="/upload" method="post" encType="multiplart/form-data">
-							<tr>
-								<th>제목: </th>
-								<td><input type="text" placeholder="제목" name="title" id="title" class="form-control"/></td>
-							</tr>
-							<tr>
-								<th>isbn: </th>
-								<td>
-									<input type="text" placeholder="isbn 검색으로 책 정보를 자동 입력하세요." id="isbn" name="isbn" class="form-control" style="width:75%;float:left">
-									<input type="button" id="search" class="btn btn-outline-primary" value="검색" onclick="searchISBN($('#isbn').val());" style="width:20%;float:right">
-								</td>
-							</tr>
-							<tr>
-								<th>정가: </th>
-								<td><input type="text" placeholder="정가" name="price" id="price" class="form-control"/></td>
-							</tr>
-							<tr>
-								<th>판매가: </th>
-								<td><input type="text" placeholder="판매 희망가를 입력하세요." name="price" id="price" class="form-control"/></td>
-						</tr>
-							<tr>
-								<th>작가: </th>
-								<td><input type="text" placeholder="작가" name="author" id="author" class="form-control"/></td>
-							</tr>
-							<tr>
-								<th>출판사: </th>
-								<td><input type="text" placeholder="출판사" name="pub" id="pub" class="form-control"/></td>
-							</tr>
-							<tr>
-								<th>정보: </th>
-								<td><textarea  rows="10" cols="10" placeholder="정보" name="content" id="content" class="form-control"></textarea></td>
-							</tr>
-							<tr>
-								<th>상태: </th>
-								<td><textarea  rows="5" cols="10" placeholder="현재 책의 상태(하자유무 등)를 입력하세요." name="content" id="content" class="form-control"></textarea></td>
-							</tr>
-							<tr>
-								<th>첨부파일: </th>
-								<td>
-									<div class="form-group">
-									<label for="File">Only Photo Input</label>
-									<input type="file" id="File" name="photo">
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>비밀번호: </th>
-								<td><input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요. (아직 회원제 구현을 못했기 때문)" class="form-control"/></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-										<input type="submit" value="등록" class="pull-right"/>
-										<input type="button" value="목록" class="pull-right" onclick="javascript:location.href='/'"/>
-										<!-- <a class="btn btn-default" onclick="sendData()"> 등록 </a>
-										<a class="btn btn-default" type="reset"> reset </a>
-										<a class="btn btn-default" onclick="javascript:location.href='list.jsp'">글 목록으로...</a> -->
-								</td>
-							</tr>
-					</form>
+                <div class="formWrap">
+                    <form action="/join" method="post">
+                        <div class="inputWrap">
+                            <div class="email">
+                                <span> EMAIL </span> <input type="text" name="email" class="form-control"><br/>
+                            </div>
+                            <div class="password">
+                                <span> PW </span> <input type="password" name="password" class="form-control"><br/>
+                            </div>
+                        </div>
+                        <input class="sendbtn" type="submit" value="가입하기">
+                   </form>
+                </div>
 			</tbody>
 	</table>
 	</div>

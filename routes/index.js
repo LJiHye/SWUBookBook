@@ -6,6 +6,14 @@ router.get('/', function(req, res, next) {
   res.render('index.html');
 });
 
+router.get('/join', function(req, res, next) {
+  res.render('join.html');
+});
+
+router.get('/login', function(req, res, next) {
+  res.render('login.html');
+});
+
 router.get('/sell', function(req, res, next) {
   res.render('sell.html');
 });

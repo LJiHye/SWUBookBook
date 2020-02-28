@@ -1,5 +1,3 @@
-//var $ = require("jquery");
-
 App = {
   web3Provider: null,
   contracts: {},
