@@ -2,8 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 
-var buy = require('./buy (not used)/buy.js.js')
-var sell = require('./sell (not used)/sell.js')
+// var buy = require('./buy (not used)/buy.js')
+// var sell = require('./sell (not used)/sell.js')
 // var join = require('./join/join')
 
 /* GET home page. */
@@ -11,13 +11,13 @@ router.get('/', function(req, res, next) {
   res.render('index.html');
 });
 
-// router.get('/join', function(req, res, next) {
-//   res.render('join.html');
-// });
+router.get('/join', function(req, res, next) {
+  res.render('join.html');
+});
 
-// router.get('/login', function(req, res, next) {
-//   res.render('login.html');
-// });
+router.get('/login', function(req, res, next) {
+  res.render('login.html');
+});
 
 router.get('/sell', function(req, res, next) {
   res.render('sell.html');
@@ -69,8 +69,8 @@ router.get('/contact', function(req, res, next) {
   res.render('contact.html');
 });
 
-router.use('/buy', buy);
-router.use('/sell', sell);
+// router.use('/buy', buy);
+// router.use('/sell', sell);
 // router.use('/join', join)
 
 module.exports = router;

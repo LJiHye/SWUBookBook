@@ -856,6 +856,7 @@ form label {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
+  padding-top: 30px;
 }
 #gtco-subscribe .form-control:focus {
   background: transparent;
