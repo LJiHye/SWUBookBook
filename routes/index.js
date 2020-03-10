@@ -30,10 +30,12 @@ router.post('/upload', function(req, res) {
   var p_title = body.title;
   var p_author = body.author;
   var p_pub = body.pub;
+  var p_date = body.date;
   var p_realPrice = body.realPrice;
   var p_sellPrice = body.sellPrice;
   var p_content = body.content;
   var p_state = body.state;
+  var p_imageUrl = body.imageUrl;
   var p_password = body.password;
 
   var book = mongoose.Schema({
@@ -41,14 +43,16 @@ router.post('/upload', function(req, res) {
     title : 'string',
     author : 'string',
     pub : 'string',
+    date : 'string',
     realPrice : 'number',
     sellPrice : 'number',
     content : 'string',
     state : 'string',
+    imageUrl : 'string',
     password : 'string'
   });
   var Book = mongoose.model('Schema', book);
-  var newBook = new Book({isbn : p_isbn, title : p_title, author : p_author, pub : p_pub, realPrice : p_realPrice, sellPrice : p_sellPrice, content : p_content, state : p_state, password : p_password});
+  var newBook = new Book({isbn : p_isbn, title : p_title, author : p_author, pub : p_pub, date : p_date, realPrice : p_realPrice, sellPrice : p_sellPrice, content : p_content, state : p_state, imageUrl : p_imageUrl, password : p_password});
 
   //var newBook = new Book({isbn : p_isbn, title : p_title, author : p_author, pub : p_pub, realPrice : p_realPrice, sellPrice : p_sellPrice, state : p_state, password : p_password});
 

@@ -58,7 +58,7 @@
 				if(isbn !== undefined && isbn !== ""){
 						$.ajax({
 							url: "https://dapi.kakao.com/v3/search/book",
-							headers: {'Authorization': 'KakaoAK ' + '여기에 API 키 입력!!!'},
+							headers: {'Authorization': 'KakaoAK ' + '여기 API 키 입력'},
 							type : "get",
 							data:{
 									query: isbn,
@@ -79,6 +79,7 @@
 								let date = data.datetime.split('T')[0];
 								$('#date').val(date);
 								$('#translator').val(data.translators);
+								$('#imageUrl').val(data.thumbnail);
 							}
 					});
 				} else alert("isbn을 입력해 주세요.");
@@ -144,7 +145,8 @@
 
 
 	<div class="container">
-	<table class="table table-bordered">
+	<!-- <table class="table table-bordered"> -->
+		<table class="table">
 			<thead>
 					<caption> <br> <br> </caption>
 			</thead>
@@ -178,6 +180,10 @@
 								<td><input type="text" placeholder="출판사" name="pub" id="pub" class="form-control"/></td>
 							</tr>
 							<tr>
+								<th>출간일: </th>
+								<td><input type="text" placeholder="출판사" name="date" id="date" class="form-control"/></td>
+							</tr>
+							<tr>
 								<th>정보: </th>
 								<td><textarea  rows="10" cols="10" placeholder="정보" name="content" id="content" class="form-control"></textarea></td>
 							</tr>
@@ -186,12 +192,13 @@
 								<td><textarea  rows="5" cols="10" placeholder="현재 책의 상태(하자유무 등)를 입력하세요." name="state" id="state" class="form-control"></textarea></td>
 							</tr>
 							<tr>
-								<th>첨부파일: </th>
+								<th>사진(Url): </th>
 								<td>
-									<div class="form-group">
+									<!-- <div class="form-group">
 									<label for="File">Only Photo Input</label>
 									<input type="file" id="File" name="photo">
-									</div>
+									</div> -->
+									<input type="text" id="imageUrl" name="imageUrl" class="form-control">
 								</td>
 							</tr>
 							<tr>

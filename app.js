@@ -50,7 +50,7 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb://localhost/bookbook');
+mongoose.connect('mongodb://localhost/bookbook', { useNewUrlParser: true, useUnifiedTopology: true } );
 
 //test of inserting data to mongodb
 /*var book = mongoose.Schema({
