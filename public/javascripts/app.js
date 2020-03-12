@@ -3,6 +3,37 @@ App = {
   contracts: {},
 
   init: function() {
+    $.ajax({
+      type: 'POST',
+      url: '/load',
+      dataType: 'json',
+      success: function(data) {
+        //alert(data[0].title);
+
+        var list = $('#list');
+        var template =$('#template');
+
+        for (i=data.length-1; i>=0; i--){
+          template.find('img').attr('src', data[i].imageUrl);
+          template.find('.ISBN').text(data[i].isbn);
+          template.find('.name').text(data[i].title);
+          template.find('.author').text(data[i].author);
+          template.find('.realPrice').text(data[i].realPrice);
+          template.find('.sellPrice').text(data[i].sellPrice);
+          template.find('.state').text(data[i].state);
+
+          list.append(template.html());
+        }
+      },
+      error:function(request,status,error){
+        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+    })
+ 
+    return App.initWeb3();
+   },
+
+   //원본
+  /*init: function() {
    $.getJSON('../book-list.json', function(data){
      var list = $('#list');
      var template =$('#template');
@@ -20,7 +51,22 @@ App = {
    })
 
    return App.initWeb3();
-  },
+  },*/
+
+  /*init: function(books) {
+    for(i=0; i<books.length; i++) {
+      template.find('img').attr('src', books[i].imageUrl);
+      template.find('.ISBN').text(books[i].isbn);
+      template.find('.type').text(books[i].sellPrice);
+      template.find('.name').text(books[i].title);
+      template.find('.price').text(books[i].realPrice);
+      template.find('.seller-id').text(books[i].author);
+  
+      list.append(template.html());
+    }
+  
+     return App.initWeb3();
+    },*/
 
   initWeb3: function() {
     if (typeof web3 !== 'undefined'){

@@ -1,6 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
+var $ = require('jquery');
+
+require('../public/model/model');
 
 // var buy = require('./buy (not used)/buy.js')
 // var sell = require('./sell (not used)/sell.js')
@@ -38,23 +41,9 @@ router.post('/upload', function(req, res) {
   var p_imageUrl = body.imageUrl;
   var p_password = body.password;
 
-  var book = mongoose.Schema({
-    isbn : 'string',
-    title : 'string',
-    author : 'string',
-    pub : 'string',
-    date : 'string',
-    realPrice : 'number',
-    sellPrice : 'number',
-    content : 'string',
-    state : 'string',
-    imageUrl : 'string',
-    password : 'string'
-  });
-  var Book = mongoose.model('Schema', book);
-  var newBook = new Book({isbn : p_isbn, title : p_title, author : p_author, pub : p_pub, date : p_date, realPrice : p_realPrice, sellPrice : p_sellPrice, content : p_content, state : p_state, imageUrl : p_imageUrl, password : p_password});
+  var Book = mongoose.model('book');
 
-  //var newBook = new Book({isbn : p_isbn, title : p_title, author : p_author, pub : p_pub, realPrice : p_realPrice, sellPrice : p_sellPrice, state : p_state, password : p_password});
+  var newBook = new Book({isbn : p_isbn, title : p_title, author : p_author, pub : p_pub, date : p_date, realPrice : p_realPrice, sellPrice : p_sellPrice, content : p_content, state : p_state, imageUrl : p_imageUrl, password : p_password});
 
   newBook.save(function(error,data){
     if(error) console.log(error);
@@ -65,9 +54,44 @@ router.post('/upload', function(req, res) {
   });
 });
 
-router.get('/buy', function(req, res, next) {
-  res.render('buy.html');
+router.post('/load', function(req, res){
+  var book = mongoose.model('book');
+  book.find({}, function(err, data) {
+    if(err) {console.error(err); return;}
+    if(data.length == 0) {console.log('not found'); return;}
+
+    console.log('success to find!');
+    console.log(data);
+    res.json(data);
+  });
 });
+
+router.get('/buy', function(req, res, next){
+  res.render('buy.html');
+
+  var book = mongoose.model('book');
+  var books = book.find({}, function(err, data) {
+    if(err) {console.error(err); return;}
+    if(data.length == 0) {console.log('not find'); return;}
+    //console.log('success to find!');
+
+    // var list = $('#list');
+    // var template =$('#template');
+
+    // for (i =0; i< data.length; i++){
+    //   $template.find('img').attr('src', data[i].picture);
+    //   $template.find('.ISBN').text(data[i].ISBN);
+    //   $template.find('.type').text(data[i].type);
+    //   $template.find('.name').text(data[i].name);
+    //   $template.find('.price').text(data[i].price);
+    //   $template.find('.seller-id').text(data[i].sellerId);
+
+    //   $list.append(template.html());
+    // }
+
+  });
+});
+
 
 router.get('/contact', function(req, res, next) {
   res.render('contact.html');
