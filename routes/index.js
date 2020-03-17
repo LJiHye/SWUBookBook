@@ -90,28 +90,6 @@ router.post('/load', function(req, res){
 
 router.get('/buy', function(req, res, next){
   res.render('buy.html');
-
-  var book = mongoose.model('book');
-  var books = book.find({}, function(err, data) {
-    if(err) {console.error(err); return;}
-    if(data.length == 0) {console.log('not find'); return;}
-    //console.log('success to find!');
-
-    // var list = $('#list');
-    // var template =$('#template');
-
-    // for (i =0; i< data.length; i++){
-    //   $template.find('img').attr('src', data[i].picture);
-    //   $template.find('.ISBN').text(data[i].ISBN);
-    //   $template.find('.type').text(data[i].type);
-    //   $template.find('.name').text(data[i].name);
-    //   $template.find('.price').text(data[i].price);
-    //   $template.find('.seller-id').text(data[i].sellerId);
-
-    //   $list.append(template.html());
-    // }
-
-  });
 });
 
 
