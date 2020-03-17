@@ -4,6 +4,7 @@ var router = express.Router();
 var $ = require('jquery');
 
 require('../public/model/model');
+require('../public/model/member');
 
 // var buy = require('./buy (not used)/buy.js')
 // var sell = require('./sell (not used)/sell.js')
@@ -26,7 +27,7 @@ router.get('/sell', function(req, res, next) {
   res.render('sell.html');
 });
 
-router.post('/upload', function(req, res) {
+router.post('/upload_book', function(req, res) {
   var body = req.body;
 
   var p_isbn = body.isbn;
@@ -48,8 +49,29 @@ router.post('/upload', function(req, res) {
   newBook.save(function(error,data){
     if(error) console.log(error);
     else {
-      console.log('saved!');
+      console.log('book saved!');
       res.redirect('/buy');
+    }
+  });
+});
+
+router.post('/upload_member', function(req, res) {
+  var body = req.body;
+
+  var p_email = body.email;
+  var p_password = body.password;
+
+  console.log(p_email, p_password);
+
+  var Member = mongoose.model('member');
+
+  var newMember = new Member({email : p_email, password : p_password});
+
+  newMember.save(function(error,data){
+    if(error) console.log(error);
+    else {
+      console.log('member saved!');
+      res.redirect('/');
     }
   });
 });
