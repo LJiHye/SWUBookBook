@@ -27,6 +27,17 @@ router.get('/sell', function(req, res, next) {
   res.render('sell.html');
 });
 
+router.get('/buy', function(req, res, next){
+  res.render('buy.html');
+});
+
+router.get('/contact', function(req, res, next) {
+  res.render('contact.html');
+});
+
+
+
+/* sell */ 
 router.post('/upload_book', function(req, res) {
   var body = req.body;
 
@@ -55,6 +66,7 @@ router.post('/upload_book', function(req, res) {
   });
 });
 
+/* join */ 
 router.post('/upload_member', function(req, res) {
   var body = req.body;
 
@@ -76,25 +88,46 @@ router.post('/upload_member', function(req, res) {
   });
 });
 
+/* buy */
 router.post('/load', function(req, res){
   var book = mongoose.model('book');
   book.find({}, function(err, data) {
     if(err) {console.error(err); return;}
     if(data.length == 0) {console.log('not found'); return;}
 
-    console.log('success to find!');
-    console.log(data);
+    console.log('success to load the book list!');
+    //console.log(data);
     res.json(data);
   });
 });
 
-router.get('/buy', function(req, res, next){
-  res.render('buy.html');
-});
 
+/* board */
+router.get('/loadBoard/:id', function(req, res){
+  var book = mongoose.model('book');
+  data = book.find({_id: req.params.id}, function(err, data) {
+    if(err) {console.error(err); return;}
+    if(data.length == 0) {console.log('not found'); return;}
 
-router.get('/contact', function(req, res, next) {
-  res.render('contact.html');
+    console.log('success to find the book!');
+    console.log(data);
+    //res.json(data);
+
+    console.log(data[0].isbn)
+
+    res.render('board.ejs', {
+      imageUrl: data[0].imageUrl,
+      isbn: data[0].isbn,
+      title: data[0].title,
+      realPrice: data[0].realPrice,
+      sellPrice: data[0].sellPrice,
+      author: data[0].author,
+      pub: data[0].pub,
+      date: data[0].date,
+      content: data[0].content,
+      state: data[0].state
+    });
+  });
 });
 
 // router.use('/buy', buy);

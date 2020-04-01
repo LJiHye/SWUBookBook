@@ -22,6 +22,9 @@ App = {
           template.find('.sellPrice').text(data[i].sellPrice);
           template.find('.state').text(data[i].state);
 
+          var id = template.find('.id').text(data[i]._id);
+          //alert(template.find('.id').text());
+
           list.append(template.html());
         }
       },
@@ -53,20 +56,6 @@ App = {
    return App.initWeb3();
   },*/
 
-  /*init: function(books) {
-    for(i=0; i<books.length; i++) {
-      template.find('img').attr('src', books[i].imageUrl);
-      template.find('.ISBN').text(books[i].isbn);
-      template.find('.type').text(books[i].sellPrice);
-      template.find('.name').text(books[i].title);
-      template.find('.price').text(books[i].realPrice);
-      template.find('.seller-id').text(books[i].author);
-  
-      list.append(template.html());
-    }
-  
-     return App.initWeb3();
-    },*/
 
   initWeb3: function() {
     if (typeof web3 !== 'undefined'){
@@ -118,6 +107,37 @@ App = {
 
   listenToEvents: function() {
 
+  },
+
+  loadBoard: function() {
+    var boardId = $('#modalId').val();
+
+    $('#modalId').val('');
+    $('#modalTitle').val('');
+
+    window.location.href = '/loadBoard/'+boardId;
+
+    /*
+    $("#boardModal").removeClass("in");
+    $(".modal-backdrop").remove();
+    $('#boardModal').modal('hide');
+    */
+
+    /*
+    $.ajax({
+      type: 'POST',
+      //url: '/loadBoard/'+boardId,
+      url: '/loadBoard',
+      dataType: 'text',
+      data: {"id" : boardId},
+      success: function(data) {
+        window.location.href='/loadBoard'+boardId;
+      },
+      error:function(request,status,error){
+        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+      }
+    })
+    */
   }
 };
 
@@ -132,5 +152,13 @@ $(function() {
 
     $(e.currentTarget).find('#ISBN').val(ISBN);
     $(e.currentTarget).find('#price').val(price);
+  })
+
+  $('#boardModal').on('show.bs.modal', function(e){
+    var id = $(e.relatedTarget).parent().find('.id').text();
+    var title = $(e.relatedTarget).parent().find('.name').text();
+
+    $(e.currentTarget).find('#modalId').val(id);
+    $(e.currentTarget).find('#modalTitle').val(title);
   })
 });

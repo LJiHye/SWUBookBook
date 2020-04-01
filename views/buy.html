@@ -128,25 +128,29 @@
 		  <!-- 여기에 나중에 판매자 ID를 넣을까? -->
         </div>
         <div class="panel-body">
-          <img style="width: 100%; height: 300px;" src="" >
-          <br/><br/>
-          <strong>ISBN</strong>: <span class="ISBN"></span><br/>
-          <strong>제목</strong>: <span class="name"></span><br/>
-          <strong>저자</strong>: <span class="author"></span><br/>
-		  <strong>원가</strong>: <span class="realPrice"></span><br/>
-		  <strong>판매가</strong>: <span class="sellPrice"></span><br/>
-		  <!-- <strong>판매자 ID</strong>: <span class="seller-id"></span><br/><br/> -->
-		  <strong>상태</strong>: <span class="state"></span><br/><br/>
-          <button class="btn btn-info btn-sellerInfo"
-                  type="button"
-                  data-toggle="modal"
-                  data-target="#sellerInfoModal"support>
-                  자세히 보기
+          <img style="width: 100%; height:300px;" src="" >
+					<br/><br/>
+					<strong>ID</strong>: <span class="id"></span><br/>
+					<strong>ISBN</strong>: <span class="ISBN"></span><br/>
+					<strong>제목</strong>: <span class="name"></span><br/>
+					<strong>저자</strong>: <span class="author"></span><br/>
+					<strong>원가</strong>: <span class="realPrice"></span><br/>
+					<strong>판매가</strong>: <span class="sellPrice"></span><br/>
+					<!-- <strong>판매자 ID</strong>: <span class="seller-id"></span><br/><br/> -->
+		  		<strong>상태</strong>: <span class="state"></span><br/><br/>
+					<!-- <button class="btn btn-info btn-sellerInfo" type="button" style="position: absolute; left: 35%; bottom: 5%;" onclick="App.loadBoard(); return false;" data-target="#boardModal"
+					> 자세히 보기
+					</button> -->
+					
+					<button class="btn btn-info btn-sellerInfo" type="button" style="position: absolute; left: 35%; bottom: 5%;" data-toggle="modal" data-target="#boardModal"
+					>
+            자세히 보기
           </button>
-          <button class="btn btn-info btn-buy"
+          <!-- <button class="btn btn-info btn-buy"
                   type="button"
                   data-toggle="modal"
-                  data-target="#buyModal">
+				  data-target="#buyModal"
+				  style="display: none;">
                   구입
           </button>
           <button class="btn btn-info btn-buyerInfo"
@@ -155,7 +159,7 @@
                   data-target="#buyerInfoModal"
                   style="display: none;">
                   구입자 정보
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -178,6 +182,26 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
           <button type="button" class="btn btn-primary" onclick="App.buyRealEstate(); return false;">구입</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="boardModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">상세보기</h4>
+          해당 상품의 상세 페이지로 이동합니다.
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="modalId" placeholder="아이디"/><br/>
+          <input type="text" class="form-control" id="modalTitle" placeholder="타이틀"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+          <button type="button" class="btn btn-primary" onclick="App.loadBoard(); return false;">네</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

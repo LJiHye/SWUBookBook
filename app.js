@@ -52,17 +52,4 @@ db.once('open', function(){
 
 mongoose.connect('mongodb://localhost/bookbook', { useNewUrlParser: true, useUnifiedTopology: true } );
 
-//test of inserting data to mongodb
-/*var book = mongoose.Schema({
-  isbn : 'string',
-  sellPrice : 'number',
-  state : 'string'
-});
-var Book = mongoose.model('Schema', book);
-var newBook = new Book({isbn : '9791164452064', sellPrice : '14800', state : 'Gooood'});
-newBook.save(function(error,data){
-  if(error) console.log(error);
-  else console.log('saved!');
-})*/
-
 module.exports = app;

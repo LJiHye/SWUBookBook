@@ -1,0 +1,222 @@
+<!-- <html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <%= isbn %>
+    <%= title %>
+    <%= realPrice %>
+    <%= sellPrice %>
+    <%= author %>
+    <%= pub %>
+    <%= content %>
+    <%= state %>
+  </body>
+</html> -->
+
+<!--
+	Greatness by FreeHTML5.co
+	Twitter: http://twitter.com/fh5co
+	URL: http://FreeHTML5.co
+-->
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BookBook-Board</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FreeHTML5.co" />
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../public/stylesheets/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../public/stylesheets/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="../public/stylesheets/magnific-popup.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="../public/stylesheets/owl.carousel.min.css">
+	<link rel="stylesheet" href="../public/stylesheets/owl.theme.default.min.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../public/stylesheets/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="../public/javascripts/modernizr-2.6.2.min.js"></script>
+
+	</head>
+	<body>
+
+	<div class="gtco-loader"></div>
+
+	<div id="page">
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-xs-2">
+					<div id="gtco-logo"><a href="/">BOOKBOOK.</a></div>
+				</div>
+				<div class="col-xs-10 text-right menu-1">
+					<ul>
+						<li class="active"><a href="/">Home</a></li>
+						<li><a href="join">회원가입</a></li>
+						<li><a href="login">로그인</a></li>
+						<li><a href="/buy">구매</a></li>
+						<li class="has-dropdown">
+							<a href="/sell">판매</a>
+						</li>
+						<li><a href="/contact">문의</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+
+
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image:url(../public/images/main.jpg);">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1>View Detail</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+<div style="width: 50%; margin: auto; padding-top: 30px;">
+	<table style="border: 0;">
+		<thead>
+				<caption> <br> <br> </caption>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td width="100%" style="text-align: center">
+					<img id="board_image" style="width: 200px; height: 300px; margin-top: 50px;" src=<%= imageUrl %>>
+				</td>
+			</tr>
+			<tr>
+				<td><div id="board_isbn" style="color:rgb(80, 76, 76);"><%= isbn %></div></td>
+			</tr>
+			<tr>
+				<td><div id="board_title" style="font-size: 150%; font-weight: bold; color:rgb(80, 76, 76);"><%= title %></div><br><br></td>
+			</tr>
+
+			<tr>
+				<th style="color:rgb(80, 76, 76);">정 가</th>
+				<td><div id="board_realPrice" style="text-decoration:line-through; color:rgb(80, 76, 76);"><%= realPrice %></div></td>
+			</tr>
+			<tr>
+				<th style="color:rgb(80, 76, 76);">판매가 </th>
+				<td><div id="board_sellPrice" style="font-size: 150%; color:rgb(80, 76, 76);"><%= sellPrice %></div></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+	<hr width="100%" style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
+
+	<h4 style="color:rgb(80, 76, 76)"><b>기타 정보</b></h4>
+
+	<table style="border: 0; border-collapse: separate; border-spacing: 15px;">
+		<tr >
+			<td width="20%"><b>작가</b></td>
+			<td><%= author %></td>
+		</tr>
+		<tr>
+			<td><b>출판사</b></td>
+			<td> <%= pub %></td>
+		</tr>
+		<tr>
+			<td><b>출간일</b></td>
+			<td> <%= date %></td>
+		</tr>
+		<tr>
+			<td><b>줄거리</b></td>
+		  <td><%= content %></td>
+		</tr>
+		<tr>
+			<td><b>상태</b></td>
+			<td> <%= state %> </td> 
+		</tr>
+	</table>
+	<br><br><br>
+</div>
+	  
+
+    <p >
+        <div id="disqus_thread" style="margin:0 auto; margin-left: 10%; margin-right: 10%;"></div>
+        <script>
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://bookbook-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </p>
+
+	<div class="row copyright">
+		<div class="col-md-12">
+			<p class="pull-right">
+				<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
+				<small class="block">Designed by <a href="http://FreeHTML5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
+			</p>
+		</div>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+
+	<!-- jQuery -->
+	<script src="../public/javascripts/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="../public/javascripts/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="../public/javascripts/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../public/javascripts/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="../public/javascripts/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src="../public/javascripts/jquery.countTo.js"></script>
+	<!-- Magnific Popup -->
+	<script src="../public/javascripts/jquery.magnific-popup.min.js"></script>
+	<script src="../public/javascripts/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="../public/javascripts/main.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../public/javascripts/web3.min.js"></script>
+	<script src="../public/javascripts/truffle-contract.js"></script>
+	<script src="../public/javascripts/app.js"></script>
+	<script src="../public/javascripts/utf8.js"></script>
+
+	</body>
+</html>

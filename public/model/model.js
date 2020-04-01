@@ -13,7 +13,8 @@ var book = Schema({
     content : String,
     state : String,
     imageUrl : String,
-    password : String
+    password : String,
+    uploadDate : {type: Date, default: Date.now()}
 });
 
 mongoose.model('book', book);
