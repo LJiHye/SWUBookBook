@@ -35,6 +35,8 @@
 	<link rel="stylesheet" href="../public/stylesheets/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../public/stylesheets/style.css">
 
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="../public/stylesheets/magnific-popup.css">
@@ -42,9 +44,6 @@
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="../public/stylesheets/owl.carousel.min.css">
 	<link rel="stylesheet" href="../public/stylesheets/owl.theme.default.min.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="../public/stylesheets/style.css">
 
 	<!-- Modernizr JS -->
 	<script src="../public/javascripts/modernizr-2.6.2.min.js"></script>
@@ -130,15 +129,17 @@
         <div class="panel-body">
           <img style="width: 100%; height:300px;" src="" >
 					<br/><br/>
-					<strong>ID</strong>: <span class="id"></span><br/>
+					<span class="id" style="display: none"></span>
 					<strong>ISBN</strong>: <span class="ISBN"></span><br/>
 					<strong>제목</strong>: <span class="name"></span><br/>
 					<strong>저자</strong>: <span class="author"></span><br/>
 					<strong>원가</strong>: <span class="realPrice"></span><br/>
 					<strong>판매가</strong>: <span class="sellPrice"></span><br/>
-					<!-- <strong>판매자 ID</strong>: <span class="seller-id"></span><br/><br/> -->
-		  		<strong>상태</strong>: <span class="state"></span><br/><br/>
-					<!-- <button class="btn btn-info btn-sellerInfo" type="button" style="position: absolute; left: 35%; bottom: 5%;" onclick="App.loadBoard(); return false;" data-target="#boardModal"
+
+					<!-- <strong>판매자 ID</strong>: <span class="seller-id"></span><br/><br/>
+					<strong>상태</strong>: <span class="state"></span><br/><br/>
+					
+					<button class="btn btn-info btn-sellerInfo" type="button" style="position: absolute; left: 35%; bottom: 5%;" onclick="App.loadBoard(); return false;" data-target="#boardModal"
 					> 자세히 보기
 					</button> -->
 					
@@ -210,7 +211,6 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="../public/javascripts/bootstrap.min.js"></script>
   <script src="../public/javascripts/web3.min.js"></script>
   <script src="../public/javascripts/truffle-contract.js"></script>
   <script src="../public/javascripts/app.js"></script>
