@@ -5,6 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
+var path = require("path")
+var expressSession = require("express-session")
+var cookieParser = require("cookie-parser")
+
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 
@@ -16,6 +20,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 //app.set('view engine', 'jade');
+
+//세션 환경 세팅
+app.use(
+  expressSession({
+    secret: "key",
+    resave: true,
+    saveUninitialized: true,
+  })
+)
+
+//쿠키와 세션을 미들웨어로 등록
+app.use(cookieParser())
 
 app.use(logger('dev'));
 app.use(express.json());
