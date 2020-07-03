@@ -58,7 +58,7 @@
 				if(isbn !== undefined && isbn !== ""){
 						$.ajax({
 							url: "https://dapi.kakao.com/v3/search/book",
-							headers: {'Authorization': 'KakaoAK ' + '여기에 API 키!!'},
+							headers: {'Authorization': 'KakaoAK ' + '0af2027c9cfc902e4578cb5dd3c7cdb3'},
 							type : "get",
 							data:{
 									query: isbn,
@@ -154,6 +154,12 @@
 			</thead>
 			<tbody>
 					<form action="/upload_book" method="post" encType="multiplart/form-data">
+							<tr>
+								<th>id: </th>
+								<td>
+									<input type="number" placeholder="매물번호" id="id" name="id" class="form-control" style="width:75%;float:left">
+								</td>
+							</tr>
 							<tr>
 								<th>isbn: </th>
 								<td>

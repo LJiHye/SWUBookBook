@@ -14,6 +14,7 @@ App = {
         var template =$('#template');
 
         for (i=data.length-1; i>=0; i--){
+          template.find('.id').text(i);
           template.find('img').attr('src', data[i].imageUrl);
           template.find('.ISBN').text(data[i].isbn);
           template.find('.name').text(data[i].title);
@@ -56,6 +57,20 @@ App = {
    return App.initWeb3();
   },*/
 
+  /*init: function(books) {
+    for(i=0; i<books.length; i++) {
+      template.find('img').attr('src', books[i].imageUrl);
+      template.find('.ISBN').text(books[i].isbn);
+      template.find('.type').text(books[i].sellPrice);
+      template.find('.name').text(books[i].title);
+      template.find('.price').text(books[i].realPrice);
+      template.find('.seller-id').text(books[i].author);
+  
+      list.append(template.html());
+    }
+  
+     return App.initWeb3();
+    },*/
 
   initWeb3: function() {
     if (typeof web3 !== 'undefined'){
@@ -70,29 +85,29 @@ App = {
   },
 
   initContract: function() {
-		$.getJSON('../RealEstate.json', function(data){
+		$.getJSON('../build/contracts/RealEstate.json', function(data){
       App.contracts.RealEstate = TruffleContract(data);
       App.contracts.RealEstate.setProvider(App.web3Provider);
+      App.listenToEvents();
     });
   },
 
   buyRealEstate: function() {
-    var ISBN = $('ISBN').val();
-    var price = $('price').val();
-    var id = $('id').val();
-    var passwd = $('passwd').val();
+    var id = $('#id').val();
+    var price = $('#sellPrice').val();
+    var email = $('#email').val();
+    var passwd = $('#passwd').val();
 
-    web3.eth.getAccounts(function(error, accounts){
+    web3.eth.getAccounts(function(error, accounts) {
       if(error){
         console.log(error);
       }
 
-      var account = accountS[0];
+      var account = accounts[0];
       App.contracts.RealEstate.deployed().then(function(instance){
-        var nameUTF8Encoded = utf8.encode(id);
-        return instance.buyRealEstate(ISBN, web3.toHex(nameUTF8Encoded), passwd, { from: account, value: price});
+        return instance.buyRealEstate(id, web3.toHex(email) , web3.toHex(passwd), { from: account, value: price});
       }).then(function(){
-        $('#id').val('');
+        $('#email').val('');
         $('#passwd').val('');
         $('#buyModal').modal('hide');
       }).catch(function(err){
@@ -102,42 +117,33 @@ App = {
   },
 
   loadRealEstates: function() {
-
+    App.contracts.RealEstate.deployed().then(function(instance){
+      return instance.getAllBuyers.call();
+    }).then(function(buyers){
+      for(i = 0; i < buyers.length; i++){
+        if(buyers[i] !== '0x0000000000000000000000000000000000000000'){
+          $('.panel-realEstate').eq(i).find('img').attr('src', 'public/images/done.png');     
+          $('.panel-realEstate').eq(i).find('.btn-buy').text('판매완료').attr('disabled',true);
+          $('.panel-realEstate').eq(i).find('.btn-buyerInfo').removeAttr('style');
+        }
+      }
+    }).catch(function(err){
+      console.log(err.message);
+    })
   },
 
   listenToEvents: function() {
-
-  },
-
-  loadBoard: function() {
-    var boardId = $('#modalId').val();
-
-    $('#modalId').val('');
-    $('#modalTitle').val('');
-
-    window.location.href = '/loadBoard/'+boardId;
-
-    /*
-    $("#boardModal").removeClass("in");
-    $(".modal-backdrop").remove();
-    $('#boardModal').modal('hide');
-    */
-
-    /*
-    $.ajax({
-      type: 'POST',
-      //url: '/loadBoard/'+boardId,
-      url: '/loadBoard',
-      dataType: 'text',
-      data: {"id" : boardId},
-      success: function(data) {
-        window.location.href='/loadBoard'+boardId;
-      },
-      error:function(request,status,error){
-        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-      }
+    App.contracts.RealEstate.deployed().then(function(instance) {
+      instance.LogBuyRealEstate({}, { fromBlock: 0, toBlock: 'latest' }).watch(function(error, event) {
+        if (!error) {
+          console.log('not listen error');
+          $('#events').append('<p>' + event.args._buyer + ' 계정에서 ID: ' + event.args._id + ', ISBN: ' + event.args._ISBN + ' 책을 구매했습니다</p>');
+        } else {
+          console.log('listen error');
+        }
+        App.loadRealEstates();
+      })
     })
-    */
   }
 };
 
@@ -148,17 +154,27 @@ $(function() {
 
   $('#buyModal').on('show.bs.modal', function(e){
     var ISBN = $(e.relatedTarget).parent().find('.ISBN').text();
-    var price = web3.toWei(parseFloat($(e.relatedTarget).parent().find('.price').text() || 0), "ether");
+    var id = $(e.relatedTarget).parent().find('.id').text();
+    var name = $(e.relatedTarget).parent().find('.name').text();
+    var sellPrice = web3.toWei(parseFloat($(e.relatedTarget).parent().find('.sellPrice').text() || 0), "ether");
 
     $(e.currentTarget).find('#ISBN').val(ISBN);
-    $(e.currentTarget).find('#price').val(price);
-  })
+    $(e.currentTarget).find('#id').val(id);
+    $(e.currentTarget).find('#name').val(name);
+    $(e.currentTarget).find('#sellPrice').val(sellPrice);
+  });
 
-  $('#boardModal').on('show.bs.modal', function(e){
+  $('#buyerInfoModal').on('show.bs.modal', function(e) {
     var id = $(e.relatedTarget).parent().find('.id').text();
-    var title = $(e.relatedTarget).parent().find('.name').text();
-
-    $(e.currentTarget).find('#modalId').val(id);
-    $(e.currentTarget).find('#modalTitle').val(title);
-  })
+   
+    App.contracts.RealEstate.deployed().then(function(instance) {
+      return instance.getBuyerInfo.call(id);
+    }).then(function(buyerInfo) {
+      $(e.currentTarget).find('#buyerAddress').text(buyerInfo[0]);
+      $(e.currentTarget).find('#buyerEmail').text(buyerInfo[1]);
+      $(e.currentTarget).find('#buyerPasswd').text(buyerInfo[2]);
+    }).catch(function(err) {
+      console.log(err.message);
+    })
+  });
 });
